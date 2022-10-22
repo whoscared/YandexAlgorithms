@@ -1,4 +1,4 @@
-package tasks.lecture1;
+package tasks.sequence;
 
 import java.util.HashMap;
 
@@ -55,5 +55,25 @@ public class CharacterSequence {
         }
         stringBuilder.append(count);
         return stringBuilder.toString();
+    }
+
+    public static String frequencyGraph(String s) {
+        HashMap<Character, Integer> frequency = new HashMap<>();
+        for (int i = 0; i < s.length(); i++) {
+            frequency.put(s.charAt(i), frequency.getOrDefault(s.charAt(i), 0) + 1);
+        }
+        int max = frequency.values().stream().max(Integer::compareTo).orElse(-1);
+        Character[] characters = frequency.keySet().toArray(new Character[0]);
+        StringBuilder result = new StringBuilder();
+        for (int i = max; i > 0; i--) {
+            for (Character character : characters) {
+                result.append(frequency.get(character) >= i ? "*" : " ").append(" ");
+            }
+            result.append("\n");
+        }
+        for (Character character: characters){
+            result.append(character).append(" ");
+        }
+        return result.toString();
     }
 }

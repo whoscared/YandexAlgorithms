@@ -1,4 +1,4 @@
-package tasks.lecture1;
+package tasks.math;
 
 public class QuadraticEquation {
     public static double[] quadraticEquation(double a, double b, double c) {

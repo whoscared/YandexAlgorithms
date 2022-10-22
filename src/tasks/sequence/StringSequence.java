@@ -1,9 +1,6 @@
-package tasks.lecture1;
+package tasks.sequence;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class StringSequence {
@@ -32,15 +29,17 @@ public class StringSequence {
         for (String current : Arrays.stream(directory.split(" ")).toList()) {
             directorySet.add(current);
             for (int i = 0; i < current.length(); i++) {
-                directorySet.add(current.substring(0,i) + current.substring(i+1));
+                directorySet.add(current.substring(0, i) + current.substring(i + 1));
             }
         }
 
-        for (String current : Arrays.stream(s.split(" ")).toList()){
-            if (directorySet.contains(current)){
+        for (String current : Arrays.stream(s.split(" ")).toList()) {
+            if (directorySet.contains(current)) {
                 ready.add(current);
             }
         }
         return ready;
     }
+
+
 }

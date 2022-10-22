@@ -1,9 +1,6 @@
-package tasks.lecture1;
+package tasks.sequence;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class NumericalSequence {
 
@@ -75,18 +72,34 @@ public class NumericalSequence {
         return result;
     }
 
-    public static int[] searchSum (String s, int sum){
-        if (s == null || s.isEmpty()){
+    public static int[] searchSum(String s, int sum) {
+        if (s == null || s.isEmpty()) {
             return null;
         }
         List<Integer> sequence = Arrays.stream(s.split(" ")).map(Integer::parseInt).toList();
         Set<Integer> integerSet = new HashSet<>();
-        for (int current : sequence){
-            if (integerSet.contains(sum - current)){
+        for (int current : sequence) {
+            if (integerSet.contains(sum - current)) {
                 return new int[]{current, sum - current};
             }
             integerSet.add(current);
         }
-        return new int[]{0,0};
+        return new int[]{0, 0};
+    }
+
+    //Можно ли получить одно число из другого, если переставить цифры?
+    public static boolean twoNumbers(int a, int b) {
+        HashMap<Integer, Integer> numbers = new HashMap<>();
+        int current = a;
+        while (current > 0) {
+            numbers.put(current % 10, numbers.getOrDefault(current % 10, 0) + 1);
+            current /= 10;
+        }
+        current = b;
+        while (current > 0) {
+            numbers.put(current % 10, numbers.getOrDefault(current % 10, 0) - 1);
+            current /= 10;
+        }
+        return numbers.values().stream().noneMatch(x -> x != 0);
     }
 }
