@@ -1,7 +1,6 @@
 package main;
 
 import tasks.homework.Homework;
-import tasks.sequence.CharacterSequence;
 
 import java.util.Arrays;
 
