@@ -24,4 +24,40 @@ public class NumbersSort {
         }
         return result.toString();
     }
+
+    public static void quickSort(int[] array, int low, int high) {
+        if (low >= high) {
+            return;
+        }
+        if (array.length == 0) {
+            return;
+        }
+        int middle = low + (high - low) / 2;
+        int flag = array[middle];
+
+        int i = low;
+        int j = high;
+        while (i <= j) {
+            while (array[i] < flag) {
+                i++;
+            }
+            while (array[j] > flag) {
+                j--;
+            }
+
+            if (i <= j) {
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
+                i++;
+                j--;
+            }
+        }
+        if (low < j) {
+            quickSort(array, low, j);
+        }
+        if (high > i) {
+            quickSort(array, i, high);
+        }
+    }
 }
