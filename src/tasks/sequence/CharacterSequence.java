@@ -1,5 +1,6 @@
 package tasks.sequence;
 
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class CharacterSequence {
@@ -71,9 +72,10 @@ public class CharacterSequence {
             }
             result.append("\n");
         }
-        for (Character character: characters){
+        for (Character character : characters) {
             result.append(character).append(" ");
         }
         return result.toString();
     }
+
 }

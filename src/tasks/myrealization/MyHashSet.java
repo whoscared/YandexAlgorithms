@@ -7,8 +7,8 @@ public class MyHashSet {
     private int size = 10;
     List<Integer>[] mySet = new ArrayList[size];
 
-    public MyHashSet(){
-        for (int i=0; i< size; i++){
+    public MyHashSet() {
+        for (int i = 0; i < size; i++) {
             mySet[i] = new ArrayList<>();
         }
     }

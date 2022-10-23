@@ -1,5 +1,7 @@
 package tasks.sequence;
 
+import tasks.prefix.Prefix;
+
 import java.util.*;
 
 public class NumericalSequence {
@@ -101,5 +103,51 @@ public class NumericalSequence {
             current /= 10;
         }
         return numbers.values().stream().noneMatch(x -> x != 0);
+    }
+
+    public static int countOfPair(String s, int k) {
+        int[] sequence = Arrays.stream(s.split(" ")).mapToInt(Integer::parseInt).toArray();
+        int count = 0;
+        int last = 1;
+        for (int i = 0; last < sequence.length; i++) {
+            while (last < sequence.length && sequence[last] - sequence[i] <= k) {
+                last++;
+            }
+            count += sequence.length - last;
+        }
+        return count;
+    }
+
+    public static int maxProfessionalism(String s) {
+        int[] sequence = Arrays.stream(s.split(" ")).mapToInt(Integer::parseInt).toArray();
+        int best = 0;
+        int last = sequence.length - 1;
+        for (int first = 0; first < sequence.length - 1; first++) {
+            while (sequence[first] + sequence[first + 1] < sequence[last]) {
+                last--;
+            }
+            int current = Prefix.sumOfRange(s, first + 1, last + 2);
+            best = Math.max(current, best);
+            last = sequence.length - 1;
+        }
+        return best;
+    }
+
+    public static String merge(String first, String second) {
+        int[] firstSequence = Arrays.stream(first.split(" ")).mapToInt(Integer::parseInt).toArray();
+        int[] secondSequence = Arrays.stream(second.split(" ")).mapToInt(Integer::parseInt).toArray();
+
+        int[] result = new int[firstSequence.length + secondSequence.length];
+        int i = 0, j = 0;
+        for (int temp = 0; temp < result.length; temp++) {
+            if (j == secondSequence.length || firstSequence[i] <= secondSequence[j]) {
+                result[temp] = firstSequence[i];
+                i++;
+            } else {
+                result[temp] = secondSequence[j];
+                j++;
+            }
+        }
+        return Arrays.toString(result);
     }
 }
