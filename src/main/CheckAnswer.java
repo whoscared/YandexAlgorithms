@@ -1,8 +1,6 @@
 package main;
 
-import tasks.homework.Homework;
-import tasks.prefix.Prefix;
-import tasks.sequence.NumericalSequence;
+import tasks.search.BinarySearch;
 
 public class CheckAnswer {
     public static void main(String[] args) {
