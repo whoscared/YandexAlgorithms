@@ -80,28 +80,22 @@ public class Homework2 {
         int[] arrayW = new int[26];
         Homework2.setArray(s, arrayS, w.length());
         Homework2.setArray(w, arrayW, w.length());
-        //HashMap<Character, Integer> mapS = new HashMap<>();
+        HashMap<Character, Integer> mapW = new HashMap<>();
         //HashMap<Character, Integer> mapW = new HashMap<>();
 
-        //Homework2.setHashMap(s, mapS, w.length());
-        //Homework2.setHashMap(w, mapW, w.length());
+        Homework2.setHashMap(mapW, w);
 
-        Set<Character> wSet = new HashSet<>();
-        for (int i = 0; i < w.length(); i++) {
-            wSet.add(w.charAt(i));
-        }
-
-        int countMatch = Homework2.haveMatchArray(arrayS, arrayW, wSet);
-        int sizeW = Homework2.sizeArrayNotZero(arrayW);
+        int countMatch = Homework2.haveMatchArray(arrayS, mapW);
+        int sizeW = mapW.size();
         int count = countMatch == sizeW ? 1 : 0;
 
-        for (int i = 1; i < s.length() - w.length() ; i++) {
+        for (int i = 1; i < s.length() - w.length(); i++) {
 
             char current = s.charAt(w.length() + i - 1);
             char previous = s.charAt(i - 1);
 
-            countMatch += modificationArray(arrayS, arrayW, current, 1);
-            countMatch += modificationArray(arrayS, arrayW, previous, -1);
+            countMatch += modificationArray(arrayS, mapW, current, 1);
+            countMatch += modificationArray(arrayS, mapW, previous, -1);
             countMatch = Math.max(countMatch, 0);
             if (countMatch == sizeW) {
                 count++;
@@ -110,20 +104,18 @@ public class Homework2 {
         return count;
     }
 
-    private static int haveMatchArray(int[] s, int[] w, Set<Character> wSet) {
-        int countMatch = 0;
-        for (char c : wSet) {
-            countMatch += w[c - 97] == s[c - 97] ? 1 : 0;
+    private static void setHashMap(HashMap<Character, Integer> wHash, String w) {
+        for (int i = 0; i < w.length(); i++) {
+            wHash.put(w.charAt(i), wHash.getOrDefault(w.charAt(i), 0) + 1);
         }
-        return countMatch;
     }
 
-    private static int sizeArrayNotZero(int[] array) {
-        int size = 0;
-        for (int x : array) {
-            size += x != 0 ? 1 : 0;
+    private static int haveMatchArray(int[] s, HashMap<Character, Integer> wHash) {
+        int countMatch = 0;
+        for (char c : wHash.keySet()) {
+            countMatch += wHash.get(c) == s[c - 97] ? 1 : 0;
         }
-        return size;
+        return countMatch;
     }
 
     private static void setArray(String s, int[] array, int count) {
@@ -133,19 +125,20 @@ public class Homework2 {
     }
 
     private static int modificationArray(int[] arrayS,
-                                         int[] arrayW,
+                                         HashMap<Character, Integer> wHash,
                                          char c,
                                          int operation) {
         int modif = 0;
         arrayS[c - 97] += operation;
-        if (arrayW[c - 97] == 0) {
+        if (!(wHash.containsKey(c))) {
             return 0;
         }
-        if (arrayS[c - 97] == arrayW[c - 97]) {
+        if (arrayS[c - 97] == wHash.get(c)) {
             modif += 1;
         } else {
             modif -= 1;
         }
+
         return modif;
     }
 

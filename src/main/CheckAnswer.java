@@ -2,6 +2,7 @@ package main;
 
 import tasks.homework.Homework2;
 import tasks.search.BinarySearch;
+import tasks.tree.BinaryTreeNode;
 
 public class CheckAnswer {
     public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class CheckAnswer {
         }
         System.out.println(stringBuilder);
         */
-        //System.out.println(Homework2.turtles(8, new int[][]{{1,6}, {1,8}, {1,6}, {4,3},{7,0}}));
-        System.out.println(Homework2.countWinS("abcbdbeeeebbcdbc", "bcbd"));
+
+
     }
 }
