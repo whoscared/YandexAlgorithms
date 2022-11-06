@@ -1,5 +1,6 @@
 package main;
 
+import leetcode.LeetCode;
 import tasks.homework.Homework2;
 import tasks.search.BinarySearch;
 import tasks.tree.BinaryTreeNode;
@@ -17,7 +18,7 @@ public class CheckAnswer {
         }
         System.out.println(stringBuilder);
         */
-
+        System.out.println(LeetCode.LongestSubstringWithoutRepeatingCharacters("bacbdderfba"));
 
     }
 }
