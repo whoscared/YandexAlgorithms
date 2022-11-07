@@ -1,10 +1,6 @@
 package leetcode;
 
-import java.math.MathContext;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 //abcabcbb
 public class LeetCode {
@@ -32,5 +28,39 @@ public class LeetCode {
             high++;
         }
         return best;
+    }
+
+    public static int maximum69Number(int num) {
+        if (num == 6) {
+            return 9;
+        }
+        String numS = Integer.toString(num);
+        int resultnum = 0;
+        int size = numS.length() - 1;
+        int current = num;
+        boolean six = false;
+        while (current > 0) {
+            if ((int)(current / (int)Math.pow(10,size)) == 6 && !six) {
+                resultnum += 9 * Math.pow(10, size);
+                six = true;
+            } else {
+                resultnum += (int)(current / (int)Math.pow(10,size)) * Math.pow(10, size);
+            }
+            current -= (int)(current / (int)Math.pow(10,size)) * Math.pow(10, size);
+            size--;
+        }
+
+/*        StringBuilder result = new StringBuilder();
+        //boolean six = false;
+        for (int i = 0; i < numS.length(); i++) {
+            if (numS.charAt(i) == '6' && !six) {
+                result.append("9");
+                six = true;
+            } else {
+                result.append(numS.charAt(i));
+            }
+        }
+        //return Integer.parseInt(result.toString());*/
+        return resultnum;
     }
 }
