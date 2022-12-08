@@ -18,7 +18,7 @@ public class CheckAnswer {
         }
         System.out.println(stringBuilder);
         */
-        System.out.println(LeetCode.maximum69Number(9669));
+
 
     }
 }
